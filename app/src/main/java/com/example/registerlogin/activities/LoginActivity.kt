@@ -19,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         var btnLogin = findViewById<Button>(R.id.buttonLogin)
         var etEmail = findViewById<EditText>(R.id.editTextEmail)
         var etPassword = findViewById<EditText>(R.id.editTextPassword)
@@ -58,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<ExampleJson2KtKotlin>, t: Throwable) {
-
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                     }
                 })
         }

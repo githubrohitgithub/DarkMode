@@ -39,7 +39,6 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:drawablePadding="5dp"
             android:hint="password"
             android:inputType="textPassword" />
@@ -48,19 +47,9 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:drawablePadding="5dp"
             android:hint="name"
             android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editTextSchool"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:drawablePadding="5dp"
-            android:hint="school"
-            android:inputType="text" />
 
     </LinearLayout>
 
