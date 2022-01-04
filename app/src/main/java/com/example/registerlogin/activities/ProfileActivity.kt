@@ -16,8 +16,6 @@ class ProfileActivity : AppCompatActivity() {
         var radioGroup = findViewById<RadioGroup>(com.example.registerlogin.R.id.idRGgroup)
         var themeTV = findViewById<TextView>(com.example.registerlogin.R.id.idtvTheme)
 
-        // on below line we are setting on check change method for our radio group.
-        // on below line we are setting on check change method for our radio group.
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             // on radio button check change
             when (checkedId) {
