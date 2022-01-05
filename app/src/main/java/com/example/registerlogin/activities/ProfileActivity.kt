@@ -28,11 +28,6 @@ class ProfileActivity : AppCompatActivity() {
             themeTV.text="Dark Mode ON"
             switchCompat01.isChecked=true
 
-        }else{
-
-            themeTV.text="Dark Mode OFF"
-            switchCompat01.isChecked=false
-
         }
 
 
