@@ -1,14 +1,8 @@
 package com.example.registerlogin.activities
 
-import `in`.madapps.prefrences.EasyPreferences
-import `in`.madapps.prefrences.EasyPreferences.get
-import `in`.madapps.prefrences.EasyPreferences.set
 import android.content.Context
 import android.os.Bundle
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.example.registerlogin.DarkMode
@@ -24,45 +18,33 @@ class ProfileActivity : AppCompatActivity() {
 
         context=this
 
-        val prefs = EasyPreferences.defaultPrefs(context)
+        val switchCompat01   = findViewById<SwitchCompat>(R.id.switchCompat01)
 
-        val radioGroup   = findViewById<RadioGroup>(R.id.idRGgroup)
-        val idRBDark =findViewById<RadioButton>(R.id.idRBDark)
-        val idRBLight =findViewById<RadioButton>(R.id.idRBLight)
         val themeTV = findViewById<TextView>(R.id.idtvTheme)
 
         if(DarkMode.isDarkThemeEnabled(context)){
 
             themeTV.text="Dark Mode ON"
-            idRBDark.isChecked=true
+            switchCompat01.isChecked=true
 
         }else{
-            themeTV.text="Dark Mode ON"
-            idRBLight.isChecked=true
+            themeTV.text="Dark Mode OFF"
+            switchCompat01.isChecked=false
 
         }
 
-
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            // on radio button check change
-            when (checkedId) {
-                R.id.idRBLight -> {
-
-                    themeTV.text="Dark Mode OFF"
-                    prefs["DarkMode"] = false
-                    DarkMode.applyTheme(false)
-
-                }
-                R.id.idRBDark -> {
-
-
-                    themeTV.text="Dark Mode ON"
-                    prefs["DarkMode"] = true
-                    DarkMode.applyTheme(true)
-
-
-                }
+        switchCompat01.setOnCheckedChangeListener { buttonView, isChecked ->
+           if (isChecked) {
+                themeTV.text="Dark Mode ON"
+                DarkMode.applyTheme(true)
             }
+            else {
+
+                themeTV.text="Dark Mode OFF"
+                DarkMode.applyTheme(false)
+
+            }
+
         }
 
 
