@@ -1,40 +1,75 @@
 package com.example.registerlogin.activities
 
+import `in`.madapps.prefrences.EasyPreferences
+import `in`.madapps.prefrences.EasyPreferences.get
+import `in`.madapps.prefrences.EasyPreferences.set
+import android.content.Context
 import android.os.Bundle
-import android.widget.Button
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
+import com.example.registerlogin.DarkMode
+import com.example.registerlogin.R
 
 class ProfileActivity : AppCompatActivity() {
+
+    lateinit var context: Context
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.registerlogin.R.layout.activity_profile)
+        setContentView(R.layout.activity_profile)
 
-        var radioGroup = findViewById<RadioGroup>(com.example.registerlogin.R.id.idRGgroup)
-        var themeTV = findViewById<TextView>(com.example.registerlogin.R.id.idtvTheme)
+        context=this
+
+        val prefs = EasyPreferences.defaultPrefs(context)
+
+        val radioGroup   = findViewById<RadioGroup>(R.id.idRGgroup)
+        val idRBDark =findViewById<RadioButton>(R.id.idRBDark)
+        val idRBLight =findViewById<RadioButton>(R.id.idRBLight)
+        val themeTV = findViewById<TextView>(R.id.idtvTheme)
+
+        if(DarkMode.isDarkThemeEnabled(context)){
+
+            themeTV.text="Dark Mode ON"
+            idRBDark.isChecked=true
+
+        }else{
+            themeTV.text="Dark Mode ON"
+            idRBLight.isChecked=true
+
+        }
+
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             // on radio button check change
             when (checkedId) {
-                com.example.registerlogin.R.id.idRBLight -> {
-                    // on below line we are checking the radio button with id.
-                    // on below line we are setting the text to text view as light mode.
-                    themeTV.text = "Light Theme"
-                    // on below line we are changing the theme to light mode.
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                R.id.idRBLight -> {
+
+                    themeTV.text="Dark Mode OFF"
+                    prefs["DarkMode"] = false
+                    DarkMode.applyTheme(false)
+
                 }
-                com.example.registerlogin.R.id.idRBDark -> {
-                    // this method is called when dark radio button is selected
-                    // on below line we are setting dark theme text to our text view.
-                    themeTV.text = "Dark Theme"
-                    // on below line we are changing the theme to dark mode.
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                R.id.idRBDark -> {
+
+
+                    themeTV.text="Dark Mode ON"
+                    prefs["DarkMode"] = true
+                    DarkMode.applyTheme(true)
+
+
                 }
             }
         }
-    }
+
+
+
+
+        }
+
+
     
 }
