@@ -37,7 +37,7 @@ object DarkMode {
 
     fun getModePref(context: Context): Boolean? {
         val prefs = EasyPreferences.defaultPrefs(context)
-        return prefs["DarkMode"]
+        return prefs["DarkMode",false]
 
     }
 
