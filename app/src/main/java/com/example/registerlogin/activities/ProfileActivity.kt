@@ -1,7 +1,4 @@
 package com.example.registerlogin.activities
-
-import `in`.madapps.prefrences.EasyPreferences
-import `in`.madapps.prefrences.EasyPreferences.set
 import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
@@ -20,35 +17,38 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         context=this
-        val prefs = EasyPreferences.defaultPrefs(context)
-
         val switchCompat01   = findViewById<SwitchCompat>(R.id.switchCompat01)
         val themeTV = findViewById<TextView>(R.id.idtvTheme)
+        if(DarkMode.getModePref(context)==true)  DarkMode.applyTheme(true,context)
 
 
-        if(DarkMode.isDarkThemeEnabled(context)){
+
+        if(DarkMode.getModePref(context)==true){
 
             themeTV.text="Dark Mode ON"
             switchCompat01.isChecked=true
 
         }else{
+
             themeTV.text="Dark Mode OFF"
             switchCompat01.isChecked=false
 
         }
 
+
+
         switchCompat01.setOnCheckedChangeListener { buttonView, isChecked ->
            if (isChecked) {
                 themeTV.text="Dark Mode ON"
-                DarkMode.applyTheme(true)
-                prefs["DarkMode"] = "yes"
+                DarkMode.applyTheme(true,context)
+
 
             }
             else {
 
                 themeTV.text="Dark Mode OFF"
-                DarkMode.applyTheme(false)
-                prefs["DarkMode"] = "no"
+                DarkMode.applyTheme(false,context)
+
 
             }
 
@@ -60,5 +60,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-    
+
+
+
 }
